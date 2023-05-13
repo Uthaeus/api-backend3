@@ -1,16 +1,17 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show update destroy ]
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
 
   # GET /products
   def index
     @products = Product.all
 
-    render json: @products
+    render json: @products, include: :user 
   end
 
   # GET /products/1
   def show
-    render json: @product
+    render json: @product, include: :user
   end
 
   # POST /products

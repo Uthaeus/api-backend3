@@ -1,7 +1,16 @@
 # frozen_string_literal: true
 
-class User::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
+
+  # q: where can i find the source of this problem ActionController::RoutingError (uninitialized constant Users::RegistrationsController)?
+  # a: https://stackoverflow.com/questions/57693303/rails-6-0-0-api-devise-uninitialized-constant-usersregistrationscontroller
+  # q: how can i fix this problem?
+  # q: is the source of this problem in this file?
+  # a: no, the source of this problem is in the routes file
+  # q: what is the source of this problem Zeitwerk::NameError (expected file /Users/romanlavery/coding2/practice-apis/api-backend3/app/controllers/users/registrations_controller.rb to define constant Users::RegistrationsController, but didn't)?
+  # a: the source of this problem is in the routes file
+
 
   private
 

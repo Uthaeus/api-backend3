@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_13_045429) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_13_050954) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_13_045429) do
     t.string "thumg_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_meetups_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -32,6 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_13_045429) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -42,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_13_045429) do
     t.string "thumb_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,4 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_13_045429) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "meetups", "users"
+  add_foreign_key "posts", "users"
+  add_foreign_key "products", "users"
 end

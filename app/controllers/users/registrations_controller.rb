@@ -3,12 +3,6 @@
 class User::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
-  protected 
-
-  def sign_up_params
-    params.require(:user).permit(:username)
-  end
-
   private
 
   def respond_with(resource, _opts = {})

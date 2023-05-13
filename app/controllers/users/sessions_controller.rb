@@ -22,7 +22,7 @@ class Users::SessionsController < Devise::SessionsController
     current_user = User.find(jwt_payload["sub"])
     if current_user
       render json: {
-        status: {code: 200, message: "Signed out sucessfully.", data: current_user}
+        status: {code: 200, message: "Signed out sucessfully."}
       }, status: :ok
     else
       render json: {

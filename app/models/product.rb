@@ -4,4 +4,6 @@ class Product < ApplicationRecord
 
     mount_uploader :main_image, ProductUploader
     mount_uploader :thumb_image, ProductUploader
+
+    belongs_to :user
 end

@@ -5,12 +5,12 @@ class MeetupsController < ApplicationController
   def index
     @meetups = Meetup.all
 
-    render json: @meetups
+    render json: @meetups, include: :user
   end
 
   # GET /meetups/1
   def show
-    render json: @meetup
+    render json: @meetup, include: :user
   end
 
   # POST /meetups
@@ -46,6 +46,6 @@ class MeetupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meetup_params
-      params.require(:meetup).permit(:title, :description, :location, :time, :date, :main_image, :thumg_image)
+      params.require(:meetup).permit(:title, :description, :location, :time, :date, :main_image, :thumb_image, :user_id)
     end
 end

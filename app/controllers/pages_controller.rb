@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:user_current]
+  respond_to :json
 
   def home
     @products = Product.all
@@ -10,8 +11,7 @@ class PagesController < ApplicationController
       products: @products,
       meetups: @meetups,
       posts: @posts,
-      include: [:user]
-    }
+    }, include: :user
   end
 
   def user_current

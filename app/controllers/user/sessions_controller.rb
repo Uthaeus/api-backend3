@@ -1,6 +1,34 @@
 # frozen_string_literal: true
 
 class User::SessionsController < Devise::SessionsController
+  respond_to :json
+
+  private
+
+  def respond_with(resource, _opts = {})
+    if resource.persisted?
+      render json: {
+        status: {code: 200, message: "Signed in sucessfully.", data: current_user}
+      }, status: :ok
+    else
+      render json: {
+        status: {message: "User couldn't be signed in sucessfully. #{resource.errors.full_messages.to_sentence}"}
+      }, status: :unprocessable_entity
+    end
+  end
+
+  def respond_to_on_destroy
+    if current_user
+      render json: {
+        status: {code: 200, message: "Signed out sucessfully.", data: current_user}
+      }, status: :ok
+    else
+      render json: {
+        status: {message: "User couldn't be signed out sucessfully. #{resource.errors.full_messages.to_sentence}"}
+      }, status: :unprocessable_entity
+    end
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

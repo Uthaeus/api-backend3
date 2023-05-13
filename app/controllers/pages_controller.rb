@@ -3,9 +3,9 @@ class PagesController < ApplicationController
   respond_to :json
 
   def home
-    @products = Product.all
-    @meetups = Meetup.all
-    @posts = Post.all
+    @products = Product.all.order(created_at: :desc).limit(3)
+    @meetups = Meetup.all.order(created_at: :desc).limit(3)
+    @posts = Post.all.order(created_at: :desc).limit(3)
 
     render json: {
       products: @products,

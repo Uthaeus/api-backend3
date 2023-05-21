@@ -6,4 +6,6 @@ class Meetup < ApplicationRecord
     mount_uploader :thumb_image, MeetupUploader
 
     belongs_to :user
+
+    has_many :likes, dependent: :destroy
 end

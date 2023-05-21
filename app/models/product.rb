@@ -6,4 +6,6 @@ class Product < ApplicationRecord
     mount_uploader :thumb_image, ProductUploader
 
     belongs_to :user
+
+    has_many :likes, dependent: :destroy
 end

@@ -15,6 +15,6 @@ class PagesController < ApplicationController
   end
 
   def user_current
-    render json: current_user
+    render json: current_user, include: [:products, :meetups, :posts, :likes]
   end
 end

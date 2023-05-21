@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :meetups
   has_many :products
+  has_many :likes
 
   def jwt_payload
     super 
